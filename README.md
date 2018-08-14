@@ -1,5 +1,5 @@
 # wechat-slideBarChart
-小程序仿KEEP左右滑动定位柱状图表
+小程序仿KEEP左右滑动定位柱状表
 
 ### 效果演示
 ![image](http://wx2.sinaimg.cn/mw690/a73bc6a1ly1frirt7juqeg20900fu4lh.gif)
