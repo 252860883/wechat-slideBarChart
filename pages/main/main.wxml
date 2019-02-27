@@ -2,6 +2,6 @@
 <slideBarChart chartData="{{chartData}}" bindcurrentBarChange="currentBarChange"></slideBarChart>
 
 <view class='current'>
-  <view class='name'> month:  {{currentData.name}}</view>
-  <view class='value'>value:  {{currentData.value}}</view>
+  <view class='value'>{{currentData.value}}</view>
+  <view class='name'>{{currentData.name}}</view>
 </view>
