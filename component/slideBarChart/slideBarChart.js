@@ -4,7 +4,12 @@ Component({
    * 组件的属性列表
    */
   properties: {
-
+    chartData: {
+      type: Object,
+      observer: function() {
+        this.initialization()
+      }
+    }
   },
 
   /**
@@ -22,42 +27,45 @@ Component({
     scrollTimeout: "", //滚动节流定时器
   },
   /**
-   * 生命舟曲
+   * 生命周期
    */
   attached() {
-    let that = this
-    // setTimeout(() => {
-      wx.createSelectorQuery().in(this).selectAll('.slide-item-content').boundingClientRect(function(rects) {
-        // 获取bar的实际宽度
-        wx.getSystemInfo({
-          success: function(res) {
-            console.log(res, rects)
-            let chartLeft = (res.windowWidth - rects[0].width) / 2
-            console.log(rects[0].width, that.data.historyData.length - 1)
-            that.setData({
-              chartLeft: chartLeft,
-              chartWidth: (that.data.historyData.length - 0.5) * rects[0].width + res.windowWidth / 2
-            })
-            setTimeout(() => {
-              that.setData({
-                // 滚动到最后一个时间轴
-                moveScroll: rects[0].width * (that.data.historyData.length - 1),
-                nowIndex: that.data.historyData.length,
-                barWidth: rects[0].width,
-                windowWidth: res.windowWidth
-              })
-            }, 1000)
-          }
-        })
-      }).exec()
-    // },1000)
+
   },
 
   /**
    * 组件的方法列表
    */
   methods: {
-
+    // 初始化
+    initialization() {
+      let self=this
+      setTimeout(() => {
+        wx.createSelectorQuery().in(this).selectAll('.slide-item-content').boundingClientRect(function(rects) {
+          // 获取bar的实际宽度
+          wx.getSystemInfo({
+            success: function(res) {
+              console.log(res, rects)
+              let chartLeft = (res.windowWidth - rects[0].width) / 2
+              console.log(rects[0].width, self.data.historyData.length - 1)
+              self.setData({
+                chartLeft: chartLeft,
+                chartWidth: (self.data.historyData.length - 0.5) * rects[0].width + res.windowWidth / 2
+              })
+              setTimeout(() => {
+                self.setData({
+                  // 滚动到最后一个时间轴
+                  moveScroll: rects[0].width * (self.data.historyData.length - 1),
+                  nowIndex: self.data.historyData.length,
+                  barWidth: rects[0].width,
+                  windowWidth: res.windowWidth
+                })
+              }, 1000)
+            }
+          })
+        }).exec()
+      }, 0)
+    },
     // 滑动开始
     clickStart(e) {
       this.setData({
@@ -67,7 +75,6 @@ Component({
     // 滑动过程
     chartScroll(e) {
       // console.log("滑动" + e.detail.scrollLeft)
-      let that = this
       clearTimeout(this.data.scrollTimeout)
       if (this.data.isTouch) {
         this.setData({
@@ -77,7 +84,7 @@ Component({
         // 因为ios下有惯性滑动，这里不能直接touchend事件
         this.setData({
           scrollTimeout: setTimeout(() => {
-            that.clickEnd()
+            this.clickEnd()
           }, 100)
         })
       }

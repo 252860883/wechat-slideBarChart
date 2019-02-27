@@ -1,2 +1,2 @@
 <!--pages/main/main.wxml-->
-<slideBarChart></slideBarChart>
+<slideBarChart chartData="{{chartData}}"></slideBarChart>
