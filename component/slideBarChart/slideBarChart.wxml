@@ -3,9 +3,9 @@
     <view class='slide-charts' style='padding-left:{{chartLeft}}px;width:{{chartWidth}}px'>
       <view class='slide-item ' wx:for="{{chartData}}" wx:item="{{item}}" wx:key="{{item}}" wx:index="{{index}}">
         <view class="slide-item-content {{index==nowIndex-1?'slide-bar-active':'' }}">
-          <view class='slide-number'>{{item.value}}</view>
+          <view class='slide-number'>{{item[yName]}}</view>
           <view class="slide-bar-content " style='height:{{item.value}}rpx'></view>
-          <view class='slide-number' hidden='{{!nowIndex}}'>{{item.name}}</view>
+          <view class='slide-number' hidden='{{!nowIndex}}'>{{item[xName]}}</view>
         </view>
       </view>
     </view>

@@ -9,6 +9,12 @@ Component({
       observer: function() {
         this.initialization()
       }
+    },
+    xName:{
+      type:String
+    },
+    yName: {
+      type: String
     }
   },
 
