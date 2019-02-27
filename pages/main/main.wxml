@@ -1,2 +1,7 @@
-<!--pages/main/main.wxml-->
-<slideBarChart chartData="{{chartData}}"></slideBarChart>
+<!-- 引入滑动组件 -->
+<slideBarChart chartData="{{chartData}}" bindcurrentBarChange="currentBarChange"></slideBarChart>
+
+<view class='current'>
+  <view class='name'> month:  {{currentData.name}}</view>
+  <view class='value'>value:  {{currentData.value}}</view>
+</view>

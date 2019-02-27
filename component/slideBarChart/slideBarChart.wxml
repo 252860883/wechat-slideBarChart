@@ -2,17 +2,15 @@
   <scroll-view bindscroll="chartScroll" scroll-x scroll-left="{{moveScroll}}" scroll-with-animation bindtouchstart='clickStart'>
     <view class='slide-charts' style='padding-left:{{chartLeft}}px;width:{{chartWidth}}px'>
       <view class='slide-item ' wx:for="{{chartData}}" wx:item="{{item}}" wx:key="{{item}}" wx:index="{{index}}">
-        <view class="slide-item-content {{index==nowIndex-1?'slide-bar-isSelect':'' }}">
+        <view class="slide-item-content {{index==nowIndex-1?'slide-bar-active':'' }}">
           <view class='slide-number'>{{item.value}}</view>
           <view class="slide-bar-content " style='height:{{item.value}}rpx'></view>
-          <view class='slide-number'>{{item.value}}</view>
+          <view class='slide-number' hidden='{{!nowIndex}}'>{{item.name}}</view>
         </view>
       </view>
     </view>
   </scroll-view>
-
 </view>
-<!-- 底部信息  -->
 <view class='chart-bottom'>
-  <text>{{nowIndex}}</text>
+<!-- 这里可以自定义你的东西 -->
 </view>

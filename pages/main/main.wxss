@@ -1,1 +1,12 @@
 /* pages/main/main.wxss */
+page{
+  background: #eee;
+}
+
+.current{
+  width:100px;
+  margin: 20rpx auto;
+  font-size: 30rpx;
+  text-align: center;
+  color: #888;
+}

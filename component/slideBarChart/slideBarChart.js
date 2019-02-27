@@ -16,7 +16,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-    historyData: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    // historyData: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     moveScroll: 0,
     barWidth: 0,
     windowWidth: 0, //实际的宽度
@@ -47,16 +47,16 @@ Component({
             success: function(res) {
               console.log(res, rects)
               let chartLeft = (res.windowWidth - rects[0].width) / 2
-              console.log(rects[0].width, self.data.historyData.length - 1)
+              console.log(rects[0].width, self.data.chartData.length - 1)
               self.setData({
                 chartLeft: chartLeft,
-                chartWidth: (self.data.historyData.length - 0.5) * rects[0].width + res.windowWidth / 2
+                chartWidth: (self.data.chartData.length - 0.5) * rects[0].width + res.windowWidth / 2
               })
               setTimeout(() => {
                 self.setData({
                   // 滚动到最后一个时间轴
-                  moveScroll: rects[0].width * (self.data.historyData.length - 1),
-                  nowIndex: self.data.historyData.length,
+                  moveScroll: rects[0].width * (self.data.chartData.length - 1),
+                  nowIndex: self.data.chartData.length,
                   barWidth: rects[0].width,
                   windowWidth: res.windowWidth
                 })
@@ -98,6 +98,7 @@ Component({
         moveScroll: this.data.barWidth * (nowIndex - 1),
         isTouch: false
       })
+      this.triggerEvent('currentBarChange',this.data.chartData[nowIndex-1])
     }
   }
 })
